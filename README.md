@@ -30,9 +30,10 @@ Requirements -
 1. Download the source code from the GitHub repository. 
 2. The project has been containerized using Docker. 
 3. Execute the following commands:
-4. Use `"`**make**`"` to build and run the project within a Docker container. 
-5. Run `"`**make migrate**`"` to execute migrations. 
-6. To halt all containers simultaneously, use `"`**make down**`"`.
+4. run **"composer install"** to add the dependencies 
+5. Use `"`**make**`"` to build and run the project within a Docker container. 
+6. Run `"`**make migrate**`"` to execute migrations. 
+7. To halt all containers simultaneously, use `"`**make down**`"`.
 
 We can also run this app using php artisan serve, if we have Mysql client installed locally
 
