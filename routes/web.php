@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MortgageCalculatorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MortgageCalculatorController::class, 'index'])->name('form.index');
+Route::post('store-form', [MortgageCalculatorController::class, 'store'])->name('submit.form');;
+Route::get('list', [MortgageCalculatorController::class, 'show'])->name('list');;
+
+
