@@ -34,6 +34,8 @@ Requirements -
 5. Run `"`**make migrate**`"` to execute migrations. 
 6. To halt all containers simultaneously, use `"`**make down**`"`.
 
+We can also run this app using php artisan serve, if we have Mysql client installed locally
+
 ## Run test
 
 Use the following command to run the tests:
