@@ -2,7 +2,7 @@ version: "3.7"
 services:
     nginx:
         image: nginx:alpine
-        container_name: morgage-calculator-nginx
+        container_name: mortgage-calculator-nginx
         restart: unless-stopped
         ports:
             - 8000:80
@@ -10,7 +10,7 @@ services:
             - ./:/var/www/html:cached
             - ./.docker/nginx:/etc/nginx/conf.d
         networks:
-            - morgage-calculator-network
+            - mortgage-calculator-network
         depends_on:
             - app
 
@@ -21,8 +21,8 @@ services:
                 uid: 1000
             context: ./.docker/app
             dockerfile: Dockerfile
-        image: morgage-calculator
-        container_name: morgage-calculator
+        image: mortgage-calculator
+        container_name: mortgage-calculator
         restart: unless-stopped
         ports:
             - 6001:6001
@@ -31,28 +31,28 @@ services:
             - ./:/var/www/html:cached
             - ./.docker/app/php-fpm.ini:/usr/local/etc/php/conf.d/99-app.ini
         networks:
-            - morgage-calculator-network
+            - mortgage-calculator-network
         depends_on:
             - database
 
     database:
         image: mariadb:10.5.8
-        container_name: morgage-calculator-mariadb
+        container_name: mortgage-calculator-mariadb
         restart: unless-stopped
         ports:
             - 3304:3304
         volumes:
-            - morgage-calculator-volume:/var/lib/mysql
+            - mortgage-calculator-volume:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
             - MYSQL_USER=${DB_USERNAME}
             - MYSQL_PASSWORD=${DB_PASSWORD}
             - MYSQL_DATABASE=${DB_DATABASE}
         networks:
-            - morgage-calculator-network
+            - mortgage-calculator-network
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: morgage-calculator-phpmyadmin
+        container_name: mortgage-calculator-phpmyadmin
         restart: unless-stopped
         tty: true
         depends_on:
@@ -64,11 +64,11 @@ services:
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             UPLOAD_LIMIT: 300M
         networks:
-            - morgage-calculator-network
+            - mortgage-calculator-network
 networks:
-    morgage-calculator-network:
+    mortgage-calculator-network:
         driver: bridge
 
 volumes:
-    morgage-calculator-volume:
+    mortgage-calculator-volume:
         driver: local
